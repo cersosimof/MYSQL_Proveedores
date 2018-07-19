@@ -1,0 +1,19 @@
+<form action="/contacto/enviar" method="POST">
+  {{!-- NOMBRE --}}
+  <div class="form-group">
+    <label for="nombreContacto">Nombre</label>
+    <input type="text" class="form-control" id="nombreContacto" name="nombreContacto">
+  </div>
+  {{!-- EMAIL --}}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Correo</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="emailContacto">
+  </div>
+  {{!-- CONSULTA --}}
+  <div class="form-group">
+    <label for="exampleInputPassword1">Consulta</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="consultaContacto">
+  </div>
+  {{!-- SUBMIT --}}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

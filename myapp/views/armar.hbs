@@ -1,0 +1,16 @@
+{{#if mensaje}}
+<div class="alert alert-danger" role="alert">
+  {{mensaje}}, intente nuevamente.
+</div>
+{{/if}}
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Crear listado</a>
+  <form class="form-inline ui-widget" action="/armar" method="POST" id="formCrearExp">
+    <label for="nroExp">Nro de Expediente: </label>
+    <input class="form-control mr-sm-2" type="search" name="nroExp" aria-label="Search" id="nroExp">
+    <label for="ramo">Ramo: </label>
+    <input class="form-control mr-sm-2" type="search" name="ramo" aria-label="Search" id="ramo">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Crear</button>
+  </form>
+</nav>
+

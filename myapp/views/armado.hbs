@@ -1,0 +1,33 @@
+<h1>EMPRESAS A INVITAR EXP. NUMERO: {{nroExp}}.</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Correo</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each empresas}}
+    <tr>
+      <th>{{nombre}}</th>
+      <td>{{correo}}</td>
+      <td>{{telefono}}</td>
+      <td>{{contacto}}</td>
+      <td> <a href="#" onclick="eliminar({{idEmpresa}}, {{nroExpediente}})">ELIMINAR</a></td>
+    </tr>
+        {{/each}}
+  </tbody>
+</table>
+
+<nav class="navbar navbar-light bg-light">
+  <div class="ui-widget">
+  <form class="form-inline"  action="/agregar" method="POST">
+    <input class="form-control mr-sm-2" type="search" placeholder="Empresa" aria-label="Search" name="empresa" id="agregaEmpresa">
+    <input type="hidden" value="{{nroExp}}" name="nroExp">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Agregar</button>
+  </form>
+  </div>
+</nav>

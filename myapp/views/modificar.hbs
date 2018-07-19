@@ -1,0 +1,48 @@
+{{!-- BUSCADOR DE EMPRESAS POR RAMO --}}
+{{#if mensaje}}
+<div class="alert alert-success" role="alert">
+  {{mensaje}}
+</div>
+{{else}}
+    {{#if empresa}}
+        {{#each resultado}}
+        <div class="container">
+            <form  action="../modificar/{{nombre}}/update" method="post">
+                <div class="form-group">
+                    <label for="idNombre">Nombre o Razon social:</label>
+                    <input type="text" name="nombre" readonly="readonly" class="form-control" id="idNombre" value="{{nombre}}">
+                </div>
+                <div class="form-group">
+                    <label for="idCorreo">Correo Electronico:</label>
+                    <input type="mail" name="correo" class="form-control" id="idCorreo" value="{{correo}}">
+                </div>
+                <div class="form-group">
+                    <label for="idTel">Telefono:</label>
+                    <input type="text" name="telefono" class="form-control" id="idTel" value="{{telefono}}">
+                </div>
+                <div class="form-group">
+                    <label for="idContacto">Contacto:</label>
+                    <input type="text" name="contacto" class="form-control" id="idContacto" value="{{contacto}}">
+                </div>
+                <div class="form-group">
+                    <label for="irRamo">Ramo que vende:</label>
+                    <input type="text" name="ramo" class="form-control" id="idRamo" value="{{ramo}}">
+                </div>
+                <div class="form-group">
+                    <label for="idCuit">Cuit:</label>
+                    <input type="text" name="cuit" class="form-control" id="idCuit" value="{{cuit}}">
+                </div>
+                    <input type="submit" name="Cargar" value="Modificar" class="btn btn-info">
+            </form>
+        </div>
+        {{/each}}
+    {{else}}
+    <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Busque la empresa que desea modificar por nombre</a>
+    <form class="form-inline ui-widget" action="/modificar" method="POST">
+        <input class="form-control mr-sm-2" type="search" name="empresa" aria-label="Search" id="buscadorModif" required    >
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    </nav>
+    {{/if}}
+{{/if}}
