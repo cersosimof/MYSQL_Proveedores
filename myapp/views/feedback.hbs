@@ -1,1 +1,5 @@
-<h2>ESTE ES EL FEEDBACK</h2>
+<ul class="list-group">
+    {{#each expedientes}}
+<li class="list-group-item disabled"><a href="./feedback/{{nroExpediente}}">{{nroExpediente}}</a></li>
+    {{/each}}
+</ul>

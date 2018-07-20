@@ -1,0 +1,31 @@
+<h2>EMPRESAS PARTICIPANTES</h2>
+<h4>Tilde las empresas que cotizaron y luego presiones aceptar.</h4>
+
+{{!-- <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Empresa</th>
+      <th scope="col"></th>
+      <th scope="col">Cotizo?</th>
+    </tr>
+  </thead>
+  {{#each expedientes}}
+  <tbody>
+    <tr>
+      <th>{{nombre}}</th>
+      <th>-</th>
+      <td><input type="checkbox" name="{{nombre}}" value="{{nombre}}" id="checkbox{{nombre}}"></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary">Aceptar</button> --}}
+
+ {{!-- <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br> --}}
+
+ <form action="/feedback/{{nroExp}}" method="POST">
+{{#each expedientes}}
+ <input type="checkbox" name="{{nombre}}" value="{{nombre}}">{{nombre}}<br>
+{{/each}}
+<input type="submit">
+ </form>
