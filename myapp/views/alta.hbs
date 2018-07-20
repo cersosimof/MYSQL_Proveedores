@@ -4,7 +4,7 @@
 </div>
 {{else}}
 <div class="container">
-	<form  action="/alta" method="POST" enctype="multipart/form-data">
+	<form  action="/alta" method="POST">
 		<div class="form-group">
 			<label for="idNombre">Nombre o Razon social:</label>
 			<input type="text" name="nombre" class="form-control" id="idNombre" required>
@@ -28,9 +28,6 @@
 		<div class="form-group">
 			<label for="idCuit">Cuit:</label>
 			<input type="text" name="cuit" placeholder="sin guiones" class="form-control" id="idCuit" required>
-		</div>
-		<div class="form-group">
-			<input type="file" name="imagen" id="imagen">
 		</div>
 			<input type="submit" name="Cargar" value="Cargar Proveedor" class="btn btn-primary">
 	</form>

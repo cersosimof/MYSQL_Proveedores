@@ -1,14 +1,10 @@
 {{!-- BUSCADOR DE EMPRESAS POR RAMO --}}
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand"></a>
-  {{!-- <form class="form-inline" action="/ver" method="POST">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="ramo" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form> --}}
-  <div class="ui-widget">
-  <label for="tags">Ingrese el rubro de empresas que desea buscar: </label>
-  <input id="tags">
-</div>
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Ingrese el rubro de empresas que desea buscar: </a>
+  <form class="form-inline ui-widget">
+    <input class="form-control mr-sm-2" type="search" aria-label="Search" id="tags">
+
+  </form>
 </nav>
 
 
@@ -20,48 +16,30 @@
 </div>
 {{/if}}
 
+{{#if productos}}
 <div class="contenedor">
-{{#each productos }}
-<a href="../modificar/{{nombre}}">
-    <div class="boxEmpresa border border-dark">
-      <img class="card-img-top tamanoImagen" src="../images/{{imagen}}">
-      <div class="card-body">
-        <h5 class="card-title tituloProducto">{{nombre}}</h5>
-        <p class="card-text" class="textoProducto">{{correo}}</p>
-        <p class="card-text" class="textoProducto">{{telefono}}</p>
-        <p class="card-text" class="textoProducto">{{correo}}</p>
-        <p class="card-text" class="textoProducto">{{contacto}}</p>
-        {{!-- <a href="#" class="btn btn-primary">Modificar</a> --}}
-      </div>
-    </div>
-</a>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Empresa</th>
+      <th scope="col">Correo</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">% Part.</th>
+    </tr>
+  </thead>
+  {{#each productos }}
+  <tbody>
+    <tr>
+      <th>{{nombre}}</th>
+      <td>{{correo}}</td>
+      <td>{{telefono}}</td>
+      <td>{{contacto}}</td>
+      <td>100%</td> 
+    </tr>
+  </tbody>
+
 {{/each}}
+</table>
 </div>
-
-<script>
-/*  $( function() {
-    $( document ).ready(function() {
-    var availableTags = [];
-
-  $.ajax({
-      method: "POST",
-      url: "/ajax",  
-      success: function(data) {
-        var ramos = JSON.parse(data);
-        for(var i = 0; i < ramos.length; i++ ) {
-          availableTags.push(ramos[i].ramo)
-        }
-      }
-   });
-
-
-    $( "#tags" ).autocomplete({
-      source: availableTags,
-      select: function(event, ui) {   
-          location.href="/ver/" + ui.item.value;
-      }
-    });
-    });
-  });*/
-</script>
-
+{{/if}}

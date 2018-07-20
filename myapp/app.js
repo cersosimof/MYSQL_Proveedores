@@ -4,32 +4,33 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-// var cors = require('cors');
-
+var cors = require('cors');
 var app = express();
 
-//JS QUE NECESITA LEVANTAR.
+
+//RUTAS
 var indexRouter = require('./routes/index');
-var verRuta = require('./routes/ver');
-var logoutRuta = require('./routes/logout');
-var eliminarRuta = require('./routes/eliminar.js')
 var altaRuta = require('./routes/alta');
-var loginRuta = require('./routes/login');
-var verRamo = require('./routes/verRamo');
-var contactoRuta = require('./routes/contacto');
 var modifRuta = require('./routes/modificar')
-var buscarRamo = require('./public/javascripts/buscarRamos.js')
-var buscarEmpresa = require('./public/javascripts/buscarEmpresa.js')
-var crearUsuario = require('./public/javascripts/crearUsuario.js')
 var armarRuta = require('./routes/armar')
-var agregarRuta = require('./public/javascripts/agregarEmpresa.js')
-var eliminarRuta = require('./public/javascripts/eliminarEmpresa.js')
+var verRuta = require('./routes/ver');
+var eliminarRuta = require('./routes/eliminar')
+var loginRuta = require('./routes/login');
+var logoutRuta = require('./routes/logout');
+var feedbackRuta = require('./routes/feedback')
+
+//AJAX
+var buscarRamo = require('./public/javascripts/buscarRamos')
+var buscarEmpresa = require('./public/javascripts/buscarEmpresa')
+var crearUsuario = require('./public/javascripts/crearUsuario')
+var agregarRuta = require('./public/javascripts/agregarEmpresa')
+var eliminarRuta = require('./public/javascripts/eliminarEmpresa')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// app.use(cors());
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,26 +38,26 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
 
+//RUTAS
 app.use('/', indexRouter);
+app.use('/alta', altaRuta)
+app.use('/modificar', modifRuta)
+app.use('/armar', armarRuta)
 app.use('/ver', verRuta);
-app.get('/ver/:ramo', verRamo);
+app.use('/feedback', feedbackRuta);
 app.use('/login', loginRuta);
 app.use('/logout', logoutRuta)
-app.use('/alta', altaRuta)
-app.get('/eliminar/:codigo', eliminarRuta)
-app.get('/errorlog', function (req, res) {res.render('errorlog')});
-app.use('/contacto', contactoRuta)
-app.use('/modificar', modifRuta)
+
+//AJAX
 app.post('/buscarRamo', buscarRamo )
-app.post('/buscarEmpresas', buscarEmpresa )
-app.use('/armar', armarRuta)
+app.post('/buscarEmpresas', buscarEmpresa)
+app.post('/crearUsuario', crearUsuario)
 app.post('/agregar', agregarRuta)
 app.get('/eliminar/:nroExp/:id', eliminarRuta)
-app.post('/crearUsuario', crearUsuario)
 
+app.get('/errorlog', function (req, res) {res.render('errorlog')});
 
-
-// catch 404 and forward to error handler
+// ERRORES
 app.use(function(req, res, next) {
   next(createError(404));
 });
