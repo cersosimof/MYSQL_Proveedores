@@ -7,6 +7,7 @@ var pool  = mysql.createPool({
   password : '',
   database : 'proveedores'
 });
+var md5 = require('md5');
 
 router.get('/', function(req, res) {
   if(req.session.user){
@@ -17,8 +18,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  var user = req.body.user;
-  var pass = req.body.pass;
+  var user = md5(req.body.user);
+  var pass = md5(req.body.pass);
 
   pool.query('SELECT * FROM usuarios WHERE user = ? AND pass = ?',[user, pass], (err, results) => {
     if(err) throw err;                      

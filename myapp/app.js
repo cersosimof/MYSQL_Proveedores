@@ -7,7 +7,6 @@ var session = require('express-session');
 var cors = require('cors');
 var app = express();
 
-
 //RUTAS
 var indexRouter = require('./routes/index');
 var altaRuta = require('./routes/alta');

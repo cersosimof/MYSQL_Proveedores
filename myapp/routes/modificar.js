@@ -50,7 +50,7 @@ router.post('/:empresa/update', function(req, res) {
     var cuit = req.body.cuit;
 
     if (req.session.user) {
-        pool.query('UPDATE proveeores SET correo = ?,telefono = ?,contacto = ?, ramo = ?,cuit = ? WHERE nombre = ?',[correo, telefono, contacto, ramo, cuit, empresa], (err, results) => {
+        pool.query('UPDATE proveeores SET correo = ?,telefono = ?,contacto = ?, ramo = ? WHERE nombre = ?',[correo, telefono, contacto, ramo, empresa], (err, results) => {
             if(err) throw err;
             if (results.length == 0){
             res.render('errorlog');

@@ -23,10 +23,10 @@ router.post('/', function(req, res, next) {
     var telefono = req.body.telefono;    
     var contacto = req.body.contacto;
     var ramo = req.body.ramo;
-    var cuit = req.body.cuit;
+
 
     //ALTA EN LA BASE DE DATOS
-    pool.query('INSERT INTO proveeores (nombre, correo, telefono, contacto, ramo, cuit) VALUES ( ?, ?, ?, ?, ?, ?)', [nombre, correo, telefono, contacto, ramo, cuit], function (error, results, fields) {
+    pool.query('INSERT INTO proveeores (nombre, correo, telefono, contacto, ramo) VALUES ( ?, ?, ?, ?, ?)', [nombre, correo, telefono, contacto, ramo], function (error, results, fields) {
       if (error) throw error;
       res.render('alta', {'altaOk' : 'Proveedor ingresado en la base de datos', 'usuario' : req.session.user })
     });

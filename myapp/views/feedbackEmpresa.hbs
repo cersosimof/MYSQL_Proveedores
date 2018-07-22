@@ -25,7 +25,8 @@
 
  <form action="/feedback/{{nroExp}}" method="POST">
 {{#each expedientes}}
- <input type="checkbox" name="{{nombre}}" value="{{nombre}}">{{nombre}}<br>
+ <input type="checkbox" name="contesto" value="{{idEmpresa}}">{{nombre}}<br>
 {{/each}}
+<input type="hidden" value="{{nroExp}}" name="nroExp">
 <input type="submit">
  </form>

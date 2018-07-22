@@ -36,7 +36,7 @@ router.post('/', function(req, res) {
                     //GUARDA LAS EMPRESAS EN EL EXPEDIENTE
                     for (var i = 0; i < results.length; i++){
                         var empresa = results[i].idEmpresa;
-                        pool.query('INSERT INTO listadoexpediente(nroExpediente, idEmpresa) VALUES (?, ?)', [nroExp, empresa], (err, results) => {
+                        pool.query('INSERT INTO listadoexpediente(nroExpediente, idEmpresa, feedback) VALUES (?, ?, ?)', [nroExp, empresa, 'no'], (err, results) => {
                         if(err) throw err;
                         })
                     }
@@ -59,7 +59,7 @@ router.post('/', function(req, res) {
 router.get('/:nroExp', function(req, res) {          
     if (req.session.user) {
         var nroExp = req.params.nroExp;
-        pool.query('SELECT listadoexpediente.idListado, listadoexpediente.nroExpediente, proveeores.idEmpresa, proveeores.nombre, proveeores.correo, proveeores.telefono, proveeores.contacto, proveeores.cuit FROM listadoexpediente LEFT JOIN proveeores ON listadoexpediente.idEmpresa = proveeores.idEmpresa WHERE listadoexpediente.nroExpediente = ?',[nroExp], (err, results) => {
+        pool.query('SELECT listadoexpediente.idListado, listadoexpediente.nroExpediente, proveeores.idEmpresa, proveeores.nombre, proveeores.correo, proveeores.telefono, proveeores.contacto FROM listadoexpediente LEFT JOIN proveeores ON listadoexpediente.idEmpresa = proveeores.idEmpresa WHERE listadoexpediente.nroExpediente = ?',[nroExp], (err, results) => {
             if(err) throw err; 
             res.render('armado', { empresas : results, 'usuario' : req.session.user, 'nroExp' : nroExp})
         })         

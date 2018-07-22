@@ -7,10 +7,11 @@ var pool  = mysql.createPool({
     password : '',
     database : 'proveedores'
 });
+var md5 = require('md5');
 
 module.exports = (req, res, next) => {
-    var newUser = req.body.newUser;
-    var newPass = req.body.newPass;
+    var newUser = md5(req.body.newUser);
+    var newPass = md5(req.body.newPass);
 
     pool.query('SELECT user FROM usuarios WHERE user = ?', [newUser], function (error, results, fields) {
         if (error) throw error;
